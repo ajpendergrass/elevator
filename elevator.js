@@ -5,18 +5,25 @@ var Elevator = function (elevatorNo, active, direction, openDoors, currentFloor,
     this.elevatorNo = elevatorNo;
     this.active = active;
     this.direction = direction;
-    this.openDoors = true;
+    this.openDoors = 0;
     this.currentFloor = currentFloor;
     this.occupied = occupied;
     this.tripCount = tripCount;
     this.floorsPassed = floorsPassed;
     this.elevatorMovt = function () {
-        while (this.active && this.direction === 0 && this.currentFloor <= noFloors) {
-            this.currentFloor +=1;
-            console.log(this.currentFloor);
+        while (this.active) {
+            if (this.direction === 0 && this.currentFloor < noFloors){
+                this.currentFloor = this.currentFloor + 1;
+                this.floorsPassed = this.floorsPassed + 1;
+            } 
+            else {
+                this.currentFloor = this.currentFloor -1;
+                this.floorsPassed = this.floorsPassed + 1;
+            }
         }
     }
 }
+
 
 var ground = 1;
 var noElevators = 3;
